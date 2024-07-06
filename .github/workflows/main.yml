@@ -1,6 +1,7 @@
 # This is a workflow to upload artifacts or files 
 
 # https://github.com/marketplace/actions/upload-a-build-artifact
+# https://github.com/actions/download-artifact
 
 name: This is first action flow   # this is the name of the workflow
 
@@ -18,7 +19,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
- uploadArtifact:
+ uploadArtifactJob:
   runs-on: ubuntu-latest
   steps:
     - run: mkdir -p /tmp
@@ -27,5 +28,12 @@ jobs:
       with:
        name: my-artifact
        path: /tmp/world.txt
+ downloadArtifactJob:
+   runs-on: ubuntu-latest
+   steps:
+   - name: download the atricfact that has been generated in above stage
+     uses: actions/download-artifact@v4
+     with:
+      name: my-artifact 
 
     
